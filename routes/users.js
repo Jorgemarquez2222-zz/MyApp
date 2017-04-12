@@ -1,10 +1,11 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var router = express.Router();
 var cors = require('cors');
 var app = express()
 app.use(cors());
 /* GET users listing. */
-router.get('/', cors(), function(req, res, next) {
+router.get('/d', cors(), function(req, res, next) {
   res.send(
     
 [

@@ -8,8 +8,18 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var costumers = require('./routes/costumers');
+var products = require('./routes/products');
+
+var mongoose   = require('mongoose');
 
 var app = express();
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://mlabBaseTest:mlabBaseTest@ds157320.mlab.com:57320/products', function(err, res) {
+    if (err) throw err;
+
+    console.log('Connected to DataBase');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +37,7 @@ app.use('/static', express.static(__dirname + '/public'));
 app.use('/', index);
 app.use('/users', users);
 app.use('/costumers', costumers);
+app.use('/api', products);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
